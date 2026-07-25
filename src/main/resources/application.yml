@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: oauth2-rbac-demo
+
+  # In-memory H2 database — nothing to install, resets on every run.
+  datasource:
+    url: jdbc:h2:mem:oauthdemo;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# springdoc / Swagger UI
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+# Actuator — expose only the health endpoint publicly.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# Toggles for the console demo.
+demo:
+  run-console: true   # set false (or pass --demo.run-console=false) to skip the console walkthrough
+  color: true         # set false if your terminal does not render ANSI colours
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: INFO
+    org.hibernate.SQL: WARN
