@@ -125,7 +125,6 @@ public class TokenController {
     private String[] resolveClientCredentials(String clientIdParam,
                                               String clientSecretParam,
                                               String authorizationHeader) {
-        // Prefer HTTP Basic (RFC 6749 recommends it) but fall back to form params.
         if (authorizationHeader != null && authorizationHeader.regionMatches(true, 0, "Basic ", 0, 6)) {
             String base64 = authorizationHeader.substring(6).trim();
             String decoded = new String(Base64.getDecoder().decode(base64), StandardCharsets.UTF_8);
@@ -152,7 +151,6 @@ public class TokenController {
     }
 
     private static Set<String> defaultUserScopes(List<String> roles) {
-        // Give every authenticated user a baseline read scope; managers/admins get more.
         Set<String> scopes = new TreeSet<>(Set.of("profile", "api.read"));
         if (roles.contains("MANAGER") || roles.contains("ADMIN")) {
             scopes.add("api.write");

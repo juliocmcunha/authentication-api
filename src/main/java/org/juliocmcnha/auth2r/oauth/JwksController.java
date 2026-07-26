@@ -21,7 +21,6 @@ public class JwksController {
 
     @GetMapping("/oauth2/jwks")
     public Map<String, Object> keys() {
-        // toJSONObject(true) => public parameters only (never leak the private key).
         return jwkSet.toJSONObject(true);
     }
 }

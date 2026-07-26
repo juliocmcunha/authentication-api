@@ -32,7 +32,6 @@ public class AppUser {
     @Column(nullable = false, unique = true, length = 100)
     private String username;
 
-    /** BCrypt hash of the password. */
     @Column(nullable = false)
     private String password;
 
@@ -46,7 +45,7 @@ public class AppUser {
     private Set<Role> roles = new HashSet<>();
 
     protected AppUser() {
-        // for JPA
+
     }
 
     public AppUser(String username, String password, Set<Role> roles) {

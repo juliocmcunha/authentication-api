@@ -186,7 +186,7 @@ public class ConsoleDemoRunner implements ApplicationRunner {
             }
             ResponseEntity<String> response = spec
                     .retrieve()
-                    .onStatus(HttpStatusCode::isError, (req, res) -> { /* swallow */ })
+                    .onStatus(HttpStatusCode::isError, (req, res) -> {})
                     .toEntity(String.class);
 
             int code = response.getStatusCode().value();
@@ -210,7 +210,7 @@ public class ConsoleDemoRunner implements ApplicationRunner {
             }
             byte[] payload = Base64.getUrlDecoder().decode(parts[1]);
             Map<?, ?> claims = objectMapper.readValue(payload, Map.class);
-            // Order the interesting claims first for readability.
+
             Map<String, Object> ordered = new LinkedHashMap<>();
             for (String key : List.of("iss", "sub", "roles", "scope", "iat", "exp")) {
                 if (claims.containsKey(key)) {
@@ -266,7 +266,6 @@ public class ConsoleDemoRunner implements ApplicationRunner {
         return color ? style : "";
     }
 
-    /** Minimal carrier for a token plus the metadata we display. */
     private record TokenResult(String accessToken, String scope, List<Object> roles) {
     }
 }

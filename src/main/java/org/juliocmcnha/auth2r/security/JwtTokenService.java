@@ -39,7 +39,6 @@ public class JwtTokenService {
         this.rsaKey = rsaKey;
     }
 
-    /** Convenience overload using the default 15-minute lifetime. */
     public IssuedToken issue(String subject, Collection<String> roles, Collection<String> scopes) {
         return issue(subject, roles, scopes, DEFAULT_TTL);
     }
@@ -72,7 +71,6 @@ public class JwtTokenService {
         return new IssuedToken(tokenValue, ttl.toSeconds(), scopeString);
     }
 
-    /** Simple carrier for an issued token and the metadata the token endpoint returns. */
     public record IssuedToken(String value, long expiresInSeconds, String scope) {
     }
 }

@@ -34,7 +34,6 @@ public class OAuthClient {
     @Column(name = "client_id", nullable = false, unique = true, length = 100)
     private String clientId;
 
-    /** BCrypt hash of the client secret. */
     @Column(name = "client_secret", nullable = false)
     private String clientSecret;
 
@@ -50,7 +49,6 @@ public class OAuthClient {
     private Set<String> scopes = new HashSet<>();
 
     protected OAuthClient() {
-        // for JPA
     }
 
     public OAuthClient(String clientId, String clientSecret, Set<Role> roles, Set<String> scopes) {

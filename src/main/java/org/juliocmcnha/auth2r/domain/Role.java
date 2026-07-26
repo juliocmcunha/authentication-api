@@ -10,7 +10,6 @@ public enum Role {
     MANAGER,
     ADMIN;
 
-    /** The Spring Security authority name for this role. */
     public String authority() {
         return "ROLE_" + name();
     }

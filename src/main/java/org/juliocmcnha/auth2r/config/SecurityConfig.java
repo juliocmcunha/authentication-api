@@ -32,9 +32,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    /**
-     * Chain 1: everything the outside world may reach without a token.
-     */
     @Bean
     @Order(1)
     public SecurityFilterChain publicChain(HttpSecurity http) throws Exception {
@@ -55,9 +52,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /**
-     * Chain 2: the protected API, guarded by the OAuth2 resource server.
-     */
     @Bean
     @Order(2)
     public SecurityFilterChain resourceServerChain(HttpSecurity http) throws Exception {
